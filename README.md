@@ -46,14 +46,14 @@ python-pyserial ustreamer
 **Stage1:**   
 On to linux pc find your SD card in you dev tree via runnig $lsblk 'eg /dev/sde'
 Run build_SD_RPI4_AB2.sh as root '$sudo ./build_SD_RPI4_AB2.sh' enter the sd dev mount when asked    
-Let script do its thing.......    
+Let the script do its thing.......    
 
 **Stage2:**   
 Install sdcard in to rpi4.   
 Connect via serial or ssh, log in as alarm password alarm   
 Get root by $su    
 Run '#./setup.sh'   
-Let script do its thing....    
+Let the script do its thing....    
 
 **Stage3:**   
 Connect via serial or ssh, log in as alarm password alarm   
@@ -61,5 +61,5 @@ Run '$./setup.sh'
 Script will pull required packages from AUR but will require user interverntion.    
 Will also clone all required RobotsGo repo's from git to alarm's home dir.   
 
-To keep system upto date '$yay -Syu --devel --timeupdate' as alarm
-To sync local RobotsGo git, cd in to dir's and run git add *, git stash, git pull
+To the keep system upto date '$yay -Syu --devel --timeupdate' as alarm    
+To sync local RobotsGo git, cd in to dir's and run git add *, git stash, git pull     
