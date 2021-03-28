@@ -17,10 +17,10 @@
 # Built off ARCHLINUX ARM https://archlinuxarm.org/ for ARMv8 aarch64 
 # Written by spoonie (Rick Spooner) for RobotsGo
  
-VER=0.1
+VER=0.2
 PROCESS_ID=$!
  
-if [ $EUID != 0 ]; then
+if [ 'id -u' -ne 0 ]; then
     echo "Script needs to be run as root!"
     exit
 else
@@ -149,6 +149,7 @@ if [ -f '/home/alarm/.stage2' ]; then
     yay -Y --gendb
     
     echo "=====Pull packages from AUR====="
+   yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu pi-bluetooth
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu libgpiod
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu python-raspberry-gpio
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu python-opencv
@@ -171,10 +172,11 @@ if [ -f '/home/alarm/.stage2' ]; then
     echo "=====DONE!!!!!!====="
     echo "For keeping the entire system uptodate run 'yay -Syu --devel --timeupdate' as alarm"
     echo "To sync local Robots Go git cd in to dir's and run git add *, git stash, git pull"
-    exit
+    read -p "Press enter to reboot.........."
+    
+    sudo reboot
 
-
-elif [ 0 != 0 ]; then
+elif [ 'id -u' -ne 0 ]; then
     echo "Script needs to be run as root!"
     exit
 fi
@@ -249,7 +251,7 @@ echo 'gpu_mem=128' >> /boot/config.txt
 echo 'start_file=start4x.elf' >> /boot/config.txt
 echo 'fixup_file=fixup4x.dat' >> /boot/config.txt
 echo 'bcm2835-v4l2' >> /etc/modules-load.d/rpi-camera.conf
-echo 'options bcm2835-v4l2 max_video_width=3240 max_video_height=2464' >> /etc/modprobe.d/rpi-camera.conf
+echo 'bcm2835-v4l2 max_video_width=2592 max_video_height=1944' >> /etc/modprobe.d/rpi-camera.conf
 echo|pacman -S opencv opencv-samples
 yes y|pacman -S vulkan-broadcom
 
