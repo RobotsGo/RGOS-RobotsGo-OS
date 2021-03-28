@@ -17,7 +17,7 @@
 # Built off ARCHLINUX ARM https://archlinuxarm.org/ for ARMv8 aarch64 
 # Written by spoonie (Rick Spooner) for RobotsGo
  
-VER=0.2
+VER=0.3
 PROCESS_ID=$!
  
 if [ 'id -u' -ne 0 ]; then
@@ -149,7 +149,6 @@ if [ -f '/home/alarm/.stage2' ]; then
     yay -Y --gendb
     
     echo "=====Pull packages from AUR====="
-   yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu pi-bluetooth
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu libgpiod
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu python-raspberry-gpio
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu python-opencv
@@ -231,8 +230,9 @@ echo 'i2c-bcm2708' >> /etc/modules-load.d/raspberrypi.conf
 echo 'dtparam=i2c_arm=on' >> /boot/config.txt
 
 #bluetooth 
-yes y|pacman -S bluez bluez-utils
+yes y|pacman -S bluez bluez-utils ell
 systemctl enable bluetooth.service
+echo 'dtparam=krnbt=on' >> /boot/config.txt
 echo 'Name = RGOS-BT-RPI4-ARMV7' >> /etc/bluetooth/main.conf
 echo 'DiscoverableTimeout = 0' >> /etc/bluetooth/main.conf
 echo 'AutoEnable=true' >> /etc/bluetooth/main.conf
@@ -247,7 +247,7 @@ echo 'audio_pwm_mode=2' >> /boot/config.txt
    
 #camera
 yes y|pacman -S v4l-utils
-echo 'gpu_mem=128' >> /boot/config.txt
+echo 'gpu_mem=256' >> /boot/config.txt
 echo 'start_file=start4x.elf' >> /boot/config.txt
 echo 'fixup_file=fixup4x.dat' >> /boot/config.txt
 echo 'bcm2835-v4l2' >> /etc/modules-load.d/rpi-camera.conf
