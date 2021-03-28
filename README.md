@@ -61,5 +61,5 @@ Run '$./setup.sh'
 Script will pull required packages from AUR but will require user interverntion.    
 Will also clone all required RobotsGo repo's from git to alarm's home dir.   
 
-To the keep system upto date '$yay -Syu --devel --timeupdate' as alarm    
+To keep the system upto date '$yay -Syu --devel --timeupdate' as alarm    
 To sync local RobotsGo git, cd in to dir's and run git add *, git stash, git pull     
