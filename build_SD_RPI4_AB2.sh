@@ -255,8 +255,9 @@ yes y|pacman -S vulkan-broadcom
 
 #wifi
 yes y|pacman -S hostapd
-echo -e "interface=wlan0\ndriver=nl80211\nssid=RGOS-WIFIAP-RPI4-ARMV\nhw_mode=g\nchannel=1\nmacaddr_acl=0\nauth_algs=1\nignore_broadcast_ssid=87654321\nwpa=2\nwpa_passphrase=\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP\nrsn_pairwise=CCMP\n" > /etc/hostapd/hostapd.conf 
+echo -e "interface=wlan0\ndriver=nl80211\nssid=RGOS-WIFIAP-RPI4-ARMV7\nhw_mode=g\nchannel=1\nmacaddr_acl=0\nauth_algs=1\nignore_broadcast_ssid=0\nwpa=2\nwpa_passphrase=87654321\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP\nrsn_pairwise=CCMP\n" > /etc/hostapd/hostapd.conf 
 echo -e "[Match]\nName=wlan0\n\n[Network]\nAddress=10.1.1.1/24\nDHCPServer=true\nIPMasquerade=true\n\n[DHCPServer]\nPoolOffset=100\nPoolSize=20\nEmitDNS=yes\nDNS=9.9.9.9\n" > /etc/systemd/network/wlan0.network
+systemctl enable hostapd.service
 
 #GPIO
 touch /usr/lib/udev/rules.d/99-spi-permissions.rules
