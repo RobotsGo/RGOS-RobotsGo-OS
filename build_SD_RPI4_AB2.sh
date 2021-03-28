@@ -17,7 +17,7 @@
 # Built off ARCHLINUX ARM https://archlinuxarm.org/ for ARMv8 aarch64 
 # Written by spoonie (Rick Spooner) for RobotsGo
  
-VER=0.3
+VER=0.4
 PROCESS_ID=$!
  
 if [ 'id -u' -ne 0 ]; then
@@ -149,6 +149,7 @@ if [ -f '/home/alarm/.stage2' ]; then
     yay -Y --gendb
     
     echo "=====Pull packages from AUR====="
+   yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu bluez-utils-compat
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu libgpiod
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu python-raspberry-gpio
    yay --answerclean n --answerdiff n  --answeredit n --answerupgrade y --noupgrademenu python-opencv
@@ -232,11 +233,9 @@ echo 'dtparam=i2c_arm=on' >> /boot/config.txt
 #bluetooth 
 yes y|pacman -S bluez bluez-utils ell
 systemctl enable bluetooth.service
-echo 'dtparam=krnbt=on' >> /boot/config.txt
-echo 'Name = RGOS-BT-RPI4-ARMV7' >> /etc/bluetooth/main.conf
-echo 'DiscoverableTimeout = 0' >> /etc/bluetooth/main.conf
-echo 'AutoEnable=true' >> /etc/bluetooth/main.conf
-echo 'options bluetooth disable_ertm=Y' >> /etc/modprobe.d/bluetooth.conf
+sed -i 's/#Name = BlueZ/Name = RGOS-BT-RPI4-ARMV7/g' /etc/bluetooth/main.conf
+sed -i 's/#DiscoverableTimeout = 0/DiscoverableTimeout = 0/g' /etc/bluetooth/main.conf
+sed -i 's/#AutoEnable=false/AutoEnable = true/g' /etc/bluetooth/main.conf
 
 #spi
 echo 'device_tree_param=spi=on' >> /boot/config.txt
