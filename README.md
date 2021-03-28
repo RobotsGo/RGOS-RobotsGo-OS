@@ -40,7 +40,7 @@ make pacman patch pkgconf cmake sed sudo texinfo which clang llvm git go python 
 i2c-tools lm_sensors bluez bluez-utils alsa-utils v4l-utils opencv opencv-samples vulkan-broadcom hostapd   
 
 **Aur Packages:**    
-yay libgpiod python-raspberry-gpio python-opencv sixpair ttf-wqy-zenhei-ibx python-spidev python-smbus-git   
+yay bluez-utils-compat libgpiod python-raspberry-gpio python-opencv sixpair ttf-wqy-zenhei-ibx python-spidev python-smbus-git   
 python-pyserial ustreamer   
 
 **Stage1:**   
@@ -53,7 +53,7 @@ Install sdcard in to rpi4.
 Connect via serial or ssh, log in as alarm password alarm   
 Get root by $su    
 Run '#./setup.sh'   
-Let the script do its thing....    
+Let the script do its thing.......   
 
 **Stage3:**   
 Connect via serial or ssh, log in as alarm password alarm   
