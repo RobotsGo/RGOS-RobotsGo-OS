@@ -14,7 +14,7 @@ Repo containing RGOS scripts to build a prebuilt ArchArmOS (ArchLinux) Targeting
 <a name="AB2rpi4armV7"></a>
 ## AlphaBot2 Rpi4 armV7  
 
-**Current Status: EXPERIMENTAL, WORKING, VERSION 0.1**
+**Current Status: EXPERIMENTAL, WORKING, VERSION 0.4**
 
 Will build a upto-date working ArchArm install with wireless AP support and the following settings and packages.
 
